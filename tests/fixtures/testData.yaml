@@ -1,0 +1,26 @@
+---
+
+secret: keep-it-for-yourself-only
+data:
+  - in: carpe noctem
+    signed: carpe noctem:xNH10LrSzNKAMD-OvpGY2VjotHc
+    valid: true
+  - in: ignotum per ignotius
+    signed: ignotum per ignotius:ABCDEFGHIJKLMNOPQRSTUVW
+    valid: false
+timestamp-data:
+  - in: Friday the 13th
+    signed: Friday the 13th:1LY7VK:Y5l8o-UQxF4i3rHAlZqQ7X5cnWc
+    timestamp: 1234567890
+    valid: true
+  - in: Friday the 13th
+    signed: Friday the 13th:1LY7VK:ABCDEFGHIJKLMNOPQRSTUVW
+    timestamp: 1234567890
+    valid: false
+object-data:
+  - in:
+      - user_id: 1
+      - user_name: Neo
+      - title: Mr.
+      - name: Anderson
+    signed: W3sidXNlcl9pZCI6MX0seyJ1c2VyX25hbWUiOiJOZW8ifSx7InRpdGxlIjoiTXIuIn0seyJuYW1lIjoiQW5kZXJzb24ifV0:1LY7VK:Lh9imh1rh3qgVpTCs0s5loOMtxw

@@ -1,0 +1,34 @@
+{
+  "name": "kyslik/timestamp-signer",
+  "description": "Package for signing with timestamp (django like).",
+  "keywords": [
+    "sign",
+    "django",
+    "timestamp",
+    "laravel"
+  ],
+  "license": "MIT",
+  "type": "package",
+  "authors": [
+    {
+      "name": "Martin Kiesel",
+      "email": "martin.kiesel@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.0",
+    "tuupola/base62": "^0.7.0",
+    "jms/serializer": "^1.5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~6.0",
+    "symfony/yaml": "3.2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kyslik\\TimestampSigner\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}
