@@ -1,7 +1,7 @@
 <?php
 
 use Kyslik\TimestampSigner\Exceptions\BadSignatureException;
-use Kyslik\TimestampSigner\TimestampSigner;
+use Kyslik\TimestampSigner\Signer;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -35,7 +35,7 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
     {
         foreach ($this->data as $data) {
             $signed = $this->signer->sign($data['in']);
-            $this->assertEquals($data['in'], $this->signer->unsign($signed, TimestampSigner::WITH_TIME));
+            $this->assertEquals($data['in'], $this->signer->unsign($signed, Signer::WITH_TIME));
         }
     }
 
@@ -45,9 +45,9 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
         foreach ($this->timestamp_data as $data) {
             $this->signer->setTimestamp($data['timestamp']);
             if ($data['valid']) {
-                $this->assertEquals($data['signed'], $this->signer->sign($data['in'], TimestampSigner::WITH_TIME));
+                $this->assertEquals($data['signed'], $this->signer->sign($data['in'], Signer::WITH_TIME));
             } else {
-                $this->assertNotEquals($data['signed'], $this->signer->sign($data['in'], TimestampSigner::WITH_TIME));
+                $this->assertNotEquals($data['signed'], $this->signer->sign($data['in'], Signer::WITH_TIME));
             }
         }
     }
@@ -57,8 +57,8 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
     {
         foreach ($this->timestamp_data as $data) {
             $this->signer->setTimestamp($data['timestamp']);
-            $signed = $this->signer->sign($data['in'], TimestampSigner::WITH_TIME);
-            $this->assertEquals($data['in'], $this->signer->unsign($signed, TimestampSigner::WITH_TIME));
+            $signed = $this->signer->sign($data['in'], Signer::WITH_TIME);
+            $this->assertEquals($data['in'], $this->signer->unsign($signed, Signer::WITH_TIME));
         }
     }
 
@@ -131,7 +131,7 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
         $yaml = new Parser();
         $data = $yaml->parse(file_get_contents($fixture));
 
-        $this->signer = new TimestampSigner($data['secret']);
+        $this->signer = new Signer($data['secret']);
         $this->data = $data['data'];
         $this->timestamp_data = $data['timestamp-data'];
         $this->object_data = $data['object-data'];

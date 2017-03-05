@@ -10,7 +10,7 @@ use Tuupola\Base62\Encoder as Base62;
  * Class TimestampSigner
  * @package Kyslik\TimestampSigner
  */
-class TimestampSigner
+class Signer
 {
     CONST WITH_TIME = true;
 
