@@ -13,11 +13,24 @@ use Tuupola\Base62\Encoder as Base62;
 class Signer
 {
 
+    CONST MINUTE = 60;
+    CONST HOUR = 60 * 60;
+    CONST DAY = 12 * self::HOUR;
+    CONST WEEK = 7 * self::DAY;
+
     CONST WITH_TIME = true;
 
-    protected $secret, $salt, $separator, $serializer;
+    protected $secret, $salt, $separator, $serializer, $base62;
 
-    private $max_age, $timestamp;
+    /**
+     * @var integer
+     */
+    private $max_age;
+
+    /**
+     * @var integer
+     */
+    private $timestamp;
 
 
     /**
@@ -26,15 +39,16 @@ class Signer
      * @param string $secret Signing key to use
      * @param string $separator
      * @param string $salt
+     * @param int    $max_age
      */
-    public function __construct(string $secret, string $separator = ':', string $salt = null)
+    public function __construct(string $secret, string $separator = ':', string $salt = null, int $max_age = null)
     {
         $this->secret = $secret;
         $this->salt = (null !== $salt ? $salt : 'django.core.signing');
         $this->separator = $separator;
         $this->base62 = new Base62;
+        $this->max_age = $max_age;
         $this->timestamp = null;
-        $this->max_age = null;
     }
 
 
