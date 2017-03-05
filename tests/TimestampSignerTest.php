@@ -23,9 +23,9 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
     {
         foreach ($this->data as $data) {
             if ($data['valid']) {
-                $this->assertEquals($data['signed'], $this->signer->sign($data['in'], false));
+                $this->assertEquals($data['signed'], $this->signer->sign($data['in']));
             } else {
-                $this->assertNotEquals($data['signed'], $this->signer->sign($data['in'], false));
+                $this->assertNotEquals($data['signed'], $this->signer->sign($data['in']));
             }
         }
     }
@@ -34,8 +34,8 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
     public function testUnsign()
     {
         foreach ($this->data as $data) {
-            $signed = $this->signer->sign($data['in'], false);
-            $this->assertEquals($data['in'], $this->signer->unsign($signed, true));
+            $signed = $this->signer->sign($data['in']);
+            $this->assertEquals($data['in'], $this->signer->unsign($signed, TimestampSigner::WITH_TIME));
         }
     }
 
@@ -45,9 +45,9 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
         foreach ($this->timestamp_data as $data) {
             $this->signer->setTimestamp($data['timestamp']);
             if ($data['valid']) {
-                $this->assertEquals($data['signed'], $this->signer->sign($data['in']));
+                $this->assertEquals($data['signed'], $this->signer->sign($data['in'], TimestampSigner::WITH_TIME));
             } else {
-                $this->assertNotEquals($data['signed'], $this->signer->sign($data['in']));
+                $this->assertNotEquals($data['signed'], $this->signer->sign($data['in'], TimestampSigner::WITH_TIME));
             }
         }
     }
@@ -57,8 +57,8 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
     {
         foreach ($this->timestamp_data as $data) {
             $this->signer->setTimestamp($data['timestamp']);
-            $signed = $this->signer->sign($data['in']);
-            $this->assertEquals($data['in'], $this->signer->unsign($signed, true));
+            $signed = $this->signer->sign($data['in'], TimestampSigner::WITH_TIME);
+            $this->assertEquals($data['in'], $this->signer->unsign($signed, TimestampSigner::WITH_TIME));
         }
     }
 

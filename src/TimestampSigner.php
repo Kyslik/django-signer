@@ -12,6 +12,7 @@ use Tuupola\Base62\Encoder as Base62;
  */
 class TimestampSigner
 {
+    CONST WITH_TIME = true;
 
     protected $secret, $salt, $separator, $serializer;
 
@@ -73,7 +74,7 @@ class TimestampSigner
             $base64d = '.'.$base64d;
         }
 
-        return $this->sign($base64d);
+        return $this->sign($base64d, self::WITH_TIME);
     }
 
 
@@ -101,7 +102,7 @@ class TimestampSigner
      * @return string $signature
      * @internal param string $string String to be signed
      */
-    public function sign(string $value, bool $with_time = true): string
+    public function sign(string $value, bool $with_time = false): string
     {
         if ($with_time) {
             $value .= $this->separator.$this->base62->encode($this->timestamp ?? time());
@@ -146,7 +147,7 @@ class TimestampSigner
         Serializer $serializer = null,
         string $encoder = 'json'
     ) {
-        $base64d = $this->unsign($signature, true);
+        $base64d = $this->unsign($signature, self::WITH_TIME);
 
         $decompress = false;
         if ($base64d[0] == '.') {
@@ -186,7 +187,7 @@ class TimestampSigner
 
         if ($with_time === false) {
             list($signature, $value) = array_map('strrev', explode($this->separator, strrev($signed_value), 2));
-            if ($this->signature($value, false) === $signature) {
+            if ($this->signature($value) === $signature) {
                 return $value;
             }
 
