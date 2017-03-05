@@ -12,6 +12,7 @@ use Tuupola\Base62\Encoder as Base62;
  */
 class Signer
 {
+
     CONST WITH_TIME = true;
 
     protected $secret, $salt, $separator, $serializer;
@@ -134,6 +135,19 @@ class Signer
 
 
     /**
+     * Alias for sign($value, true)
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public function signWithTimestamp(string $value): string
+    {
+        return $this->sign($value, Signer::WITH_TIME);
+    }
+
+
+    /**
      * @param string          $signature
      * @param string          $class
      * @param Serializer|null $serializer
@@ -217,6 +231,19 @@ class Signer
 
 
     /**
+     * Alias for unsign($string, true)
+     *
+     * @param string $signed_value
+     *
+     * @return string
+     */
+    public function unsignWithTimestamp(string $signed_value): string
+    {
+        return $this->unsign($signed_value, Signer::WITH_TIME);
+    }
+
+
+    /**
      * @param mixed $timestamp
      *
      * @return TimestampSigner
@@ -230,13 +257,13 @@ class Signer
 
 
     /**
-     * @param mixed $max_age
+     * @param int $max_age
      *
-     * @return TimestampSigner
+     * @return Signer
      */
-    public function setMaxAge($max_age)
+    public function setMaxAge(int $max_age): Signer
     {
-        $this->max_age = $max_age;
+        $this->max_age = ($max_age <= 0) ? null : $max_age;
 
         return $this;
     }

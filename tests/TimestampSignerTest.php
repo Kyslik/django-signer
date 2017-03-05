@@ -12,7 +12,7 @@ class TimestampSignerTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @var TimestampSigner
+     * @var Signer
      */
     protected $signer;
 
