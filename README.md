@@ -1,7 +1,7 @@
-# Timestamp-signer
+# django-signer
 
-[![Latest Version](https://img.shields.io/github/release/Kyslik/timestamp-signer.svg?style=flat-square)](https://github.com/Kyslik/timestamp-signer/releases)
-[![Build Status](https://travis-ci.org/Kyslik/timestamp-signer.svg?branch=master)](https://travis-ci.org/Kyslik/timestamp-signer)
+[![Latest Version](https://img.shields.io/github/release/Kyslik/django-signer.svg?style=flat-square)](https://github.com/Kyslik/django-signer/releases)
+[![Build Status](https://travis-ci.org/Kyslik/django-signer.svg?branch=master)](https://travis-ci.org/Kyslik/django-signer)
 
 This package is upgraded version of [cwygoda/signing](https://github.com/cwygoda/signing) package, with timestamps support to match [django 1.10](https://docs.djangoproject.com/en/1.10/_modules/django/core/signing/) functionality.
 
@@ -15,7 +15,7 @@ Pull this package in through Composer (development/latest version `dev-master`)
 ```
 {
     "require": {
-        "kyslik/timestamp-signer": "0.0.*"
+        "kyslik/django-signer": "0.0.*"
     }
 }
 ```
@@ -26,7 +26,7 @@ Pull this package in through Composer (development/latest version `dev-master`)
 add timestamp-signer service provider
 
 ```
-Kyslik\TimestampSigner\TimestampSignerServiceProvider::class,
+Kyslik\Django\Signing\SignerServiceProvider::class,
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ Kyslik\TimestampSigner\TimestampSignerServiceProvider::class,
 Instantiate new Signer object:
 
 ```
-$signer = new Kyslik\TimestampSigner\Signer('secret-key');
+$signer = new Kyslik\Django\Signing\Signer('secret-key');
 ```
 
 >**Note**: `$separator` defaults to `:`, `$salt` defaults to `django.core.signing`

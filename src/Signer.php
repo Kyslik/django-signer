@@ -1,14 +1,14 @@
 <?php
-namespace Kyslik\TimestampSigner;
+namespace Kyslik\Django\Signing;
 
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
-use Kyslik\TimestampSigner\Exceptions\BadSignatureException;
+use Kyslik\Django\Signing\Exceptions\BadSignatureException;
 use Tuupola\Base62\Encoder as Base62;
 
 /**
- * Class TimestampSigner
- * @package Kyslik\TimestampSigner
+ * Class Signer
+ * @package Kyslik\Django\Signing
  */
 class Signer
 {
@@ -260,9 +260,9 @@ class Signer
     /**
      * @param mixed $timestamp
      *
-     * @return TimestampSigner
+     * @return Signer
      */
-    public function setTimestamp($timestamp)
+    public function setTimestamp($timestamp): Signer
     {
         $this->timestamp = $timestamp;
 

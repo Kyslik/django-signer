@@ -1,5 +1,5 @@
 {
-  "name": "kyslik/timestamp-signer",
+  "name": "kyslik/django-signer",
   "description": "Package for signing with timestamp (django like).",
   "keywords": [
     "sign",
@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Kyslik\\TimestampSigner\\": "src/"
+      "Kyslik\\Django\\Signing\\": "src/"
     }
   },
   "minimum-stability": "stable"

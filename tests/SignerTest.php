@@ -1,14 +1,14 @@
 <?php
 
-use Kyslik\TimestampSigner\Exceptions\BadSignatureException;
-use Kyslik\TimestampSigner\Signer;
+use Kyslik\Django\Signing\Exceptions\BadSignatureException;
+use Kyslik\Django\Signing\Signer;
 use Symfony\Component\Yaml\Parser;
 
 /**
- * Class TimestampSignerTest
- * @package Kyslik\TimestampSigner\Tests
+ * Class SignerTest
+ * @package Kyslik\Django\Signing\Tests
  */
-class TimestampSignerTest extends \PHPUnit\Framework\TestCase
+class SignerTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

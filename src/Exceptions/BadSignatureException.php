@@ -1,14 +1,12 @@
 <?php
 
-namespace Kyslik\TimestampSigner\Exceptions;
+namespace Kyslik\Django\Signing\Exceptions;
 
 use Exception;
 
 /**
  * Class BadSignatureException
- * @package Kyslik\TimestampSigner
+ * @package Kyslik\Django\Signing
  */
 class BadSignatureException extends Exception
-{
-
-}
+{}
