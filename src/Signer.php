@@ -215,7 +215,7 @@ class Signer
 
         if ($with_time === false) {
             list($signature, $value) = array_map('strrev', explode($this->separator, strrev($signed_value), 2));
-            if ($this->signature($value) === $signature) {
+            if (hash_equals($signature, $this->signature($value))) {
                 return $value;
             }
 

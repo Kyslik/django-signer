@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
  */
 class TimestampSignerServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap the application services.
      *
@@ -22,6 +23,7 @@ class TimestampSignerServiceProvider extends ServiceProvider
         ], 'config');
     }
 
+
     /**
      * Register the application services.
      *
@@ -29,13 +31,9 @@ class TimestampSignerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/timestamp-signer.php',
-            'timestamp-signer'
-        );
+        $this->mergeConfigFrom(__DIR__.'/../config/timestamp-signer.php', 'timestamp-signer');
 
-
-        $this->app->bind('Kyslik\TimestampSigner\Signer', function() {
+        $this->app->singleton('Kyslik\TimestampSigner\Signer', function () {
             $config = $this->app->config['timestamp-signer'];
 
             return new Signer($config['secret'], $config['separator'], $config['salt'], $config['default_max_age']);
