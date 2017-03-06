@@ -22,6 +22,13 @@ Pull this package in through Composer (development/latest version `dev-master`)
 
     $ composer update
 
+### for Laravel 5.4
+add timestamp-signer service provider
+
+```
+Kyslik\TimestampSigner\TimestampSignerServiceProvider::class,
+```
+
 ## Usage
 
 Instantiate new Signer object:
