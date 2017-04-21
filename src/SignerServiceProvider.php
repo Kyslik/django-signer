@@ -4,7 +4,6 @@ namespace Kyslik\Django\Signing;
 
 use Illuminate\Support\ServiceProvider;
 
-
 class SignerServiceProvider extends ServiceProvider
 {
 
@@ -30,9 +29,9 @@ class SignerServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/django-signer.php', 'django-signer');
 
-        $this->app->singleton('Kyslik\Django\Signing\Signer', function () {
-            $config = $this->app->config['django-signer'];
-
+        $this->app->singleton(Signer::class, function ($app) {
+            $config = $app->config['django-signer'];
+            
             return new Signer($config['secret'], $config['separator'], $config['salt'], $config['default_max_age']);
         });
     }
