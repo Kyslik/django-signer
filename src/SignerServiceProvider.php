@@ -8,6 +8,14 @@ class SignerServiceProvider extends ServiceProvider
 {
 
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+
+    /**
      * Bootstrap the application services.
      *
      * @return void
@@ -15,7 +23,7 @@ class SignerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/django-signer.php' => $this->app->configPath().'/'.'django-signer.php',
+            __DIR__.'/../config/django-signer.php' => $this->app->configPath('django-signer.php'),
         ], 'config');
     }
 
@@ -29,10 +37,20 @@ class SignerServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/django-signer.php', 'django-signer');
 
-        $this->app->singleton(Signer::class, function ($app) {
+        $this->app->bind(Signer::class, function ($app) {
             $config = $app->config['django-signer'];
-            
+
             return new Signer($config['secret'], $config['separator'], $config['salt'], $config['default_max_age']);
         });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [Signer::class];
     }
 }
